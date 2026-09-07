@@ -1,4 +1,7 @@
 {
+  "bolly4u": "https://bolly4u.org",
+  "bollyflix": "https://bollyflix.free",
+  "movies4u": "https://movies4u.mq",
   "hdhub4u": "https://new5.hdhub4u.cl",
   "moviesdrive": "https://new3.moviesdrives.my",
   "gofile": "https://gofile.io",
@@ -8,6 +11,7 @@
   "hubcloud": "https://hubcloud.foo",
   "hubcdn": "https://hubcdn.fans",
   "hubstreamdad": "https://4khdhub.one",
+  "4khdhub": "https://4khdhub.one",
   "pixeldrain": "https://pixeldrain.dev",
   "multimovies": "https://multimovies.fyi"
 }
