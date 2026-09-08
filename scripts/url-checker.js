@@ -61,6 +61,17 @@ async function resolveLandingPage(name, url, html, client) {
     }
   }
 
+  // Pattern 3: JavaScript redirects (window.location = "...", location.href = "...", location.replace("..."))
+  const jsMatch = html.match(/(?:window\.)?location(?:\.href|\.replace)?\s*(?:=|\()\s*["'](https?:\/\/[^"']+)["']/i);
+  if (jsMatch && jsMatch[1]) {
+    const target = jsMatch[1];
+    const finalDomain = getDomain(target);
+    if (finalDomain !== getDomain(url)) {
+      console.log(`🎯 [${name}] Resolved JS-redirect to: ${finalDomain}`);
+      return finalDomain;
+    }
+  }
+
   return null;
 }
 
