@@ -1,5 +1,9 @@
 {
   "bollyflix": "https://bollyflix1.lol",
+  "bollyflix_mirrors": [
+    "https://bollyflix.af",
+    "https://bollyflix.photo"
+  ],
   "movies4u": "https://movies4u.kg",
   "hdhub4u": "https://new8.hdhub4u.cl",
   "moviesdrive": "https://new2.moviesdrive.beer",
