@@ -246,12 +246,38 @@ if (require.main === module) {
     let hasChanges = false;
     const SKIP_KEYS = new Set(['nfmirror']);
 
-    for (const [name, url] of Object.entries(providers)) {
+    for (const [name, value] of Object.entries(providers)) {
       if (SKIP_KEYS.has(name)) {
-        console.log(`⏩ Skipping ${name} (${url}) as configured`);
+        console.log(`⏩ Skipping ${name} as configured`);
         continue;
       }
 
+      // Handle arrays (e.g. bollyflix_mirrors): check each mirror URL individually.
+      // Previously the array was passed straight into checkUrl(), which produced
+      // garbage via new URL(array) and the mirrors were never actually checked.
+      if (Array.isArray(value)) {
+        const baseName = name.replace(/_mirrors$/, ''); // bollyflix_mirrors -> bollyflix
+        console.log(`Checking ${name} (${value.length} mirrors)...`);
+        let arrayChanged = false;
+        for (let i = 0; i < value.length; i++) {
+          const url = value[i];
+          if (typeof url !== 'string' || !url) continue;
+          try {
+            const newUrl = await checkUrl(baseName, url);
+            if (newUrl && newUrl !== url) {
+              value[i] = newUrl;
+              arrayChanged = true;
+              console.log(`✏️ Updated ${name}[${i}]: ${url} => ${newUrl}`);
+            }
+          } catch (error) {
+            console.log(`❌ Error processing ${name}[${i}] (${url}): ${error.message}`);
+          }
+        }
+        if (arrayChanged) hasChanges = true;
+        continue;
+      }
+
+      const url = value;
       console.log(`Checking ${name} (${url})...`);
       try {
         const newUrl = await checkUrl(name, url);
