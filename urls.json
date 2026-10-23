@@ -3,7 +3,6 @@
   "bollyflix_mirrors": [
     "https://bollyflix.co.za"
   ],
-  "movies4u": "https://movies4u.nf",
   "hdhub4u": "https://new8.hdhub4u.cl",
   "moviesdrive": "https://new3.moviesdrive.beer",
   "gofile": "https://gofile.io",
@@ -15,6 +14,5 @@
   "hubstreamdad": "https://4khdhub.one",
   "4khdhub": "https://4khdhub.one",
   "pixeldrain": "https://pixeldrain.dev",
-  "multimovies": "https://multimovies.org",
-  "cinevood": "https://cinevood.courses"
+  "multimovies": "https://multimovies.org"
 }
